@@ -136,10 +136,15 @@ function Portfolio() {
 
   const [result, setResult] = useState("");
 
+  const [formUserName,setFormName]=useState("");
+  const [formUserEmail,setFormEmail]=useState("");
+  const [formUserMsg,setFormMsg]=useState("");
+  
+
   const removeLoginDetails=()=>{
     Cookies.remove("loggedInUser")
     updateAccState(false)
-    navigate("/portfolio/signin", { replace: true });
+    navigate("/signin", { replace: true });
   }
   
   useEffect(() =>
@@ -155,7 +160,7 @@ function Portfolio() {
   [skillCategory]);
 
   if (!isLoggedIn){
-    return <Navigate to="/portfolio/signin" replace/>;
+    return <Navigate to="/signin" replace/>;
   }
 
 
@@ -169,7 +174,7 @@ function Portfolio() {
     event.preventDefault();
     setResult("Sending....");
     const formData = new FormData(event.target);
-    formData.append("access_key", "02a4c2d2-cee3-452a-94e5-b6c3e49ae56e");
+    formData.append("access_key", import.meta.env.VITE_API_KEY);
 
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -179,6 +184,9 @@ function Portfolio() {
     const data = await response.json();
     if (data.success) {
       setResult("Form Submitted Successfully");
+      setFormName("");
+      setFormMsg("");
+      setFormEmail("");
       event.target.reset();
     } else {
       setResult("Error");
@@ -307,15 +315,15 @@ function Portfolio() {
       <form className="form-element" onSubmit={onSubmit}>
         <div className="input-card">
           <label>Full Name</label>
-          <input className="input-element" placeholder="Name" name="name" required/>
+          <input className="input-element" autoComplete="name" placeholder="Name" name="name" required value={formUserName} onChange={(e)=>{setFormName(e.target.value)}}/>
         </div>
         <div className="input-card">
           <label>Email Address</label>
-          <input className="input-element" placeholder="Email" name="email" required/>
+          <input className="input-element" autoComplete="email" placeholder="Email" name="email" required value={formUserEmail} onChange={(e)=>{setFormEmail(e.target.value)}}/>
         </div>
         <div className="input-card">
           <label>Your Message</label>
-          <textarea placeholder="Message" rows='5' cols='8' className="input-element" name="message" required></textarea>
+          <textarea placeholder="Message" rows='5' cols='8' autoComplete="off" className="input-element" name="message" required value={formUserMsg} onChange={(e)=>{setFormMsg(e.target.value)}}></textarea>
         </div>
         <div className="form-btn-card">
           <button className="form-btn" type="submit">Submit</button>

@@ -37,7 +37,7 @@ const SignIn=()=>{
             // Set a login session cookie
             Cookies.set("loggedInUser", JSON.stringify({ accName: userName }), { expires: 2 });
 
-            navigate("/portfolio/page", { replace: true });
+            navigate("/page", { replace: true });
         } else {
             alert("Invalid credentials");
         }
@@ -51,17 +51,17 @@ const SignIn=()=>{
                 <form className="signin-form-container" onSubmit={checkDetails}>
                 <div className="signin-form-card">
                     <label className="signin-form-lable">Enter Name</label>
-                    <input value={userName} type="text" placeholder="Name" onChange={e => {setUserName(e.target.value)}}/>
+                    <input value={userName} autoComplete="username" type="text" placeholder="Name" onChange={e => {setUserName(e.target.value)}}/>
                 </div>
                 <div className="signin-form-card">
                     <label className="signin-form-lable">Enter Password</label>
-                    <input value={userPassword} type="password" placeholder="Password" onChange={e => {setUserPassword(e.target.value)}}/>
+                    <input value={userPassword} autoComplete="current-password" type="password" placeholder="Password" onChange={e => {setUserPassword(e.target.value)}}/>
                 </div>
 
                 <div className="sign-in-form-btn-card">
                     <button type="submit" className="signin-btn">SignIn</button>
                 </div>
-                <p className="msg">Create an account? <Link to="/portfolio/signup" className="link-of-page">Sign Up</Link></p>
+                <p className="msg">Create an account? <Link to="/signup" className="link-of-page">Sign Up</Link></p>
                 </form>
             </div>
         </div>
@@ -69,3 +69,4 @@ const SignIn=()=>{
 }
 
 export default SignIn
+

@@ -41,7 +41,7 @@ const SignUp=()=>{
         // Clear form and redirect
         setName("");
         setPassword("");
-        navigate("/portfolio/signin");
+        navigate("/signin");
     }
 
     return(
@@ -50,19 +50,19 @@ const SignUp=()=>{
                 <h1 className="signup-form-title">Sign Up</h1>
                 <form className="signup-form-container" onSubmit={onSubmitDetails}>
                 <div className="signup-form-card">
-                    <label className="signup-form-lable">Enter Name</label>
-                    <input value={name} type="text" placeholder="Name" onChange={e => {setName(e.target.value)}}/>
+                    <label className="signup-form-lable">Set Name</label>
+                    <input value={name} autoComplete="username" type="text" placeholder="Name" onChange={e => {setName(e.target.value)}}/>
                 </div>
                 <div className="signup-form-card">
-                    <label className="signup-form-lable">Enter Password</label>
-                    <input value={password} type="password" placeholder="Password" onChange={e => {setPassword(e.target.value)}}/>
+                    <label className="signup-form-lable">Set Password</label>
+                    <input value={password} autoComplete="new-password" type="password" placeholder="Password" onChange={e => {setPassword(e.target.value)}}/>
                 </div>
 
                 <div className="sign-up-form-btn-card">
                     <button type="submit" className="signup-btn">SignUp</button>
                 </div>
 
-                <p className="msg">Already have an account? <Link to="/portfolio/signin" className="link-of-page">Sign In</Link></p>
+                <p className="msg">Already have an account? <Link to="/signin" className="link-of-page">Sign In</Link></p>
                 </form>
             </div>
         </div>

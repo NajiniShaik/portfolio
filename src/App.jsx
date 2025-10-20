@@ -9,8 +9,9 @@ import Portfolio from './components/Portfolio/index.jsx'
 import SignIn from "./components/SignIn/index.jsx"
 import SignUp from "./components/SignUp/index.jsx"
 
-const App = () => {
 
+const App = () => {
+  
   const { theme} = useContext(dataContext);
 
   useEffect(() => {
@@ -26,10 +27,10 @@ const App = () => {
 
   return(
   <Routes>
-    <Route path="/portfolio/" element={<SignIn/>} />
-    <Route exact path="/portfolio/signin" element={<SignIn/>} />
-    <Route exact path="/portfolio/signup" element={<SignUp/>} />
-    <Route exact path="/portfolio/page" element={<Portfolio/>} />
+    <Route path="/" element={<SignIn/>} />
+    <Route exact path="/signin" element={<SignIn/>} />
+    <Route exact path="/signup" element={<SignUp/>} />
+    <Route exact path="/page" element={<Portfolio/>} />
   </Routes>
 )
 
